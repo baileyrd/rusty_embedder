@@ -1,0 +1,21 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/rusty-embedder-core",
+    "crates/rusty-embedder-local",
+    "crates/rusty-embedder-http",
+    "crates/rusty-embedder",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.75"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/baileyrd/rusty_embedder"
+authors = ["rusty_embedder contributors"]
+
+[workspace.dependencies]
+rusty-embedder-core = { path = "crates/rusty-embedder-core", version = "0.1.0" }
+rusty-embedder-local = { path = "crates/rusty-embedder-local", version = "0.1.0" }
+rusty-embedder-http = { path = "crates/rusty-embedder-http", version = "0.1.0" }

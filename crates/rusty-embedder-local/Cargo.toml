@@ -1,0 +1,13 @@
+[package]
+name = "rusty-embedder-local"
+description = "Local (no-network-at-runtime) Embedder backend for rusty_embedder, powered by fastembed-rs (bundled ONNX Runtime plus a small MiniLM-class model)"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+authors.workspace = true
+
+[dependencies]
+rusty-embedder-core = { workspace = true }
+fastembed = "5"

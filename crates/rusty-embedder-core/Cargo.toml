@@ -1,0 +1,11 @@
+[package]
+name = "rusty-embedder-core"
+description = "Backend-agnostic text-embedding interface: the Embedder trait, NullEmbedder, error types, and sqlite-vec-compatible f32 vector (de)serialization"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+authors.workspace = true
+
+[dependencies]

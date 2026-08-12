@@ -23,6 +23,43 @@ reverse chronological (no version tags yet — pre-1.0, nothing published).
 
 ---
 
+## Branch `claude/rusty-embedder-crate-6yd354` — Build the `rusty_embedder` workspace
+**2026-08-12** · pushed to `claude/rusty-embedder-crate-6yd354`, not yet a PR
+
+- **Added:** the first real code in this repo — a four-crate Cargo
+  workspace modeled on `rusty_search`'s shape and `knowledge-mcp`'s Python
+  `Embedder` protocol:
+  - `rusty-embedder-core` — the `Embedder` trait (`dimension`/`model_name`/
+    `embed`), `NullEmbedder`, `EmbedError`/`Result`, and
+    `serialize_f32`/`deserialize_f32` matching `sqlite-vec`'s `vec0`
+    on-disk byte layout exactly. **Zero mandatory dependencies.**
+  - `rusty-embedder-local` — `LocalEmbedder`, local inference via
+    `fastembed-rs` (bundled ONNX Runtime + MiniLM-class model), no network
+    per `embed()` call after the first model download.
+  - `rusty-embedder-http` — `HttpEmbedder`, a generic client (via
+    `reqwest::blocking`, since `Embedder::embed` is sync) for any
+    OpenAI-compatible embeddings endpoint. API key from an env var, never
+    logged or put in an error message; `Debug` impl redacts it too.
+  - `rusty-embedder` — the facade, re-exporting the core API plus each
+    backend behind its own feature flag (`local`, `http`), off by default.
+  - `docs/adr/0002-pluggable-embedder-trait-and-backend-crates.md` — the
+    design record (sync vs. async trait, zero-dependency core, batching
+    contract, backend/feature-flag split, byte-layout choice).
+- All four crates build clean under `cargo clippy --workspace
+  --all-features --all-targets -- -D warnings`. `rusty-embedder-core` and
+  `rusty-embedder-http` are fully tested with zero network (the latter via
+  `wiremock`); `rusty-embedder-local`'s network-touching tests are
+  `#[ignore]`d by default and were run explicitly against a real model
+  download to confirm the `fastembed-rs` integration actually works.
+- **Scope cut (deliberate, per the task):** no Voyage-AI-specific or other
+  bespoke-protocol backend in v1 — one local backend and one HTTP-generic
+  backend is enough surface to prove the trait shape; add more the same
+  way `rusty_search` adds a search backend, when something needs one.
+  Correlating a vector to a caller's row id, fusing FTS/vector rankings,
+  and choosing a retrieval mode are explicitly `rusty_knowledge`'s job
+  once it depends on this crate (closing its own issue #18), not this
+  crate's.
+
 ## PR #1 — Add .github PR and issue templates
 **2026-08-12** · [#1](https://github.com/baileyrd/rusty_embedder/pull/1)
 
