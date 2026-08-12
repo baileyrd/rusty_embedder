@@ -24,7 +24,9 @@ reverse chronological (no version tags yet — pre-1.0, nothing published).
 ---
 
 ## Repo governance setup
-**2026-08-12** · (PR link to be added once merged)
+**2026-08-12** · [`40080f7`](https://github.com/baileyrd/rusty_embedder/commit/40080f7da7972e6216da7a789818eba8b459fafc)
+(direct push, not a PR — repo had zero commits/branches, nothing to open a
+PR against yet; this commit became the default branch)
 
 - **Added:** standard governance file set via the `repo-config` skill — README,
   CONTRIBUTING, CODE_OF_CONDUCT, SECURITY, CHANGELOG, RELEASE_NOTES,
