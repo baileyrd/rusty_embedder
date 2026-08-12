@@ -1,0 +1,19 @@
+[package]
+name = "rusty-embedder"
+description = "Pluggable text-embedding interface for Rust: swap embedding backends without changing application code"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+authors.workspace = true
+
+[features]
+default = []
+local = ["dep:rusty-embedder-local"]
+http = ["dep:rusty-embedder-http"]
+
+[dependencies]
+rusty-embedder-core = { workspace = true }
+rusty-embedder-local = { workspace = true, optional = true }
+rusty-embedder-http = { workspace = true, optional = true }
