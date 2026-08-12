@@ -23,6 +23,18 @@ reverse chronological (no version tags yet — pre-1.0, nothing published).
 
 ---
 
+## PR #N — Add .github PR and issue templates
+**2026-08-12** · (PR link to be added once merged)
+
+- **Added:** the `.github/PULL_REQUEST_TEMPLATE/` (feature, bug_fix, docs,
+  chore) and `.github/ISSUE_TEMPLATE/` (bug_report, feature_request,
+  config.yml) sets called for in `CONTRIBUTING.md`'s workflow step 5
+  ("pick the template that matches"). These were hand-authored rather than
+  copied from the `repo-config` skill, since its template payload doesn't
+  currently ship them (see the known limitation below).
+- Closes the gap noted in the previous entry — `repo-config` audit is now
+  10/10.
+
 ## Repo governance setup
 **2026-08-12** · [`40080f7`](https://github.com/baileyrd/rusty_embedder/commit/40080f7da7972e6216da7a789818eba8b459fafc)
 (direct push, not a PR — repo had zero commits/branches, nothing to open a
